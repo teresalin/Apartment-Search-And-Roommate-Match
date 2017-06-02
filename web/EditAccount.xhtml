@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Teresa Lin on 2017.04.24
+Copyright © 2017 Osman Balci. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="template/siteTemplate.xhtml">
+
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Edit Account"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <div align="center" style="width:50%; margin:0 auto;">
+
+                <!-- Error messages will be shown here if any -->
+                <p:messages id="msgs" showIcon="false"/>
+                <h:outputLabel id="form-error-message" class="errorMessages" value="#{accountManager.statusMessage}"/>
+
+                <h:form id="EditAccountProfileForm">
+
+                    <h2>Edit Account Profile</h2>
+                    
+                    <f:event listener="#{accountManager.validatePasswordChange}" type="postValidate"/>
+
+                    <p:panelGrid columns="2" columnClasses="accountColumn1, accountColumn2">
+
+                        <!-- FIRST NAME -->
+                        <p:outputLabel value="First Name" for="firstName" />
+                        <p:inputText id="firstName" value="#{accountManager.selected.firstName}" required="true" styleClass="accountInputTextField"
+                                     requiredMessage="#{bundle.EditUserRequiredMessage_firstName}" label="First Name">
+                            <f:validateLength minimum="2" />
+                        </p:inputText>
+
+                        <!-- LAST NAME -->
+                        <p:outputLabel value="Last Name" for="lastName" />
+                        <p:inputText id="lastName" value="#{accountManager.selected.lastName}" required="true" styleClass="accountInputTextField"
+                                     requiredMessage="#{bundle.EditUserRequiredMessage_lastName}" label="Last Name">
+                            <f:validateLength minimum="2" />
+                        </p:inputText>
+                        
+                        <!-- AGE -->
+                        <p:outputLabel value="Age" for="age" />
+                        <p:inputText id="age" value="#{accountManager.selected.age}" required="true" styleClass="accountInputTextField"
+                                     requiredMessage="Please enter your age" label="Age">
+                        <f:convertNumber integerOnly="true" /> 
+                        </p:inputText>
+                        
+                        <!-- EMAIL ADDRESS -->
+                        <p:outputLabel value="Email" for="email" />
+                        <p:inputText id="email" value="#{accountManager.selected.email}" required="true" styleClass="accountInputTextField"
+                                     requiredMessage="#{bundle.EditUserRequiredMessage_email}" label="Email">
+                            <f:validateLength minimum="2" />
+                            <f:validator validatorId="emailValidator" />  
+                        </p:inputText>
+                        
+                        <!-- PHONE -->
+                        <p:outputLabel value="Phone" for="phone" />
+                        <p:inputText id="phone" value="#{accountManager.selected.phone}" required="true" styleClass="accountInputTextField"
+                                     requiredMessage="Please enter your phone" label="Phone">
+                        </p:inputText>
+                        
+                        <!-- STUDENT STATUS -->
+                        <p:outputLabel value="Student Status" for="student_status" />
+                        <p:selectOneMenu id="student_status" value="#{accountManager.selected.studentStatus}" required="true" requiredMessage="Please select your student status">
+                            <f:selectItem itemLabel="Select Status" itemValue="SelectStatus" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Freshman" itemValue="freshman" />
+                            <f:selectItem itemLabel="Sophomore" itemValue="sophomore" />
+                            <f:selectItem itemLabel="Junior" itemValue="junior" />
+                            <f:selectItem itemLabel="Senior" itemValue="senior" />
+                        </p:selectOneMenu>
+                        
+                        <!-- MAJOR -->
+                        <p:outputLabel value="Major" for="major" />
+                        <p:inputText id="major" value="#{accountManager.selected.major}" required="true" styleClass="accountInputTextField"
+                                     requiredMessage="Please enter your major" label="Major">
+                            <f:validateLength minimum="2" />
+                        </p:inputText>  
+                        
+                        <!-- User Preferences -->
+                        
+                        <h:outputLabel value="Your Preferences" />
+                        <h:outputLabel value=""/>
+                        
+                        <!-- MAX AGE -->
+                        <p:outputLabel value="Max Age of Roommates" for="age_max" />
+                        <p:inputText id="age_max" value="#{accountManager.selected.ageMax}" required="false" styleClass="accountInputTextField"
+                                     requiredMessage="Please enter your maximum age preference for roommate" label="Age_Max">
+                        <f:convertNumber integerOnly="true" /> 
+                        </p:inputText>
+                        
+                        <!-- MIN AGE -->
+                        <p:outputLabel value="Min Age of Roommates" for="age_min" />
+                        <p:inputText id="age_min" value="#{accountManager.selected.ageMin}" required="false" styleClass="accountInputTextField"
+                                     requiredMessage="Please enter your minimum age preference for roommate" label="Age_Min">
+                        <f:convertNumber integerOnly="true" /> 
+                        </p:inputText>
+                        
+                        <!-- GENDER -->
+                        <p:outputLabel value="Gender of Roommates" for="gender" />
+                        <p:selectOneMenu id="gender" value="#{accountManager.selected.gender}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_gender}">
+                            <f:selectItem itemLabel="Select Gender" itemValue="SelectGender" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Female" itemValue="female" />
+                            <f:selectItem itemLabel="Male" itemValue="male" />
+                        </p:selectOneMenu>
+                        
+                        <!-- COLLEGE STATUS -->
+                        <p:outputLabel value="College Status" for="college_status" />      
+                        <p:selectOneMenu id="college_status" value="#{accountManager.selected.collegeStatus}" required="false" requiredMessage="#{bundle.CreateUserRequiredMessage_college_status}">
+                            <f:selectItem itemLabel="Select Status" itemValue="SelectStatus" noSelectionOption="true" />
+                            <f:selectItem itemLabel="College" itemValue="college" />
+                            <f:selectItem itemLabel="Non-College" itemValue="non_college" />
+                        </p:selectOneMenu>
+                        
+                        <!-- PET PREFERENCE -->
+                        <p:outputLabel value="Pet Friendly" for="pet_preference" />      
+                        <p:selectOneMenu id="pet_preference" value="#{accountManager.selected.petPreference}" required="false" requiredMessage="Select your pet preference">
+                            <f:selectItem itemLabel="Select Preference" itemValue="SelectPreference" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Yes" itemValue="#{true}" />
+                            <f:selectItem itemLabel="No" itemValue="#{false}" />
+                        </p:selectOneMenu>
+                        
+                        <!-- BUDGET MAX -->
+                        <p:outputLabel value="Maximum Budget" for="budget_max" />
+                        <p:inputText id="budget_max" value="#{accountManager.selected.budgetMax}" required="false" styleClass="accountInputTextField"
+                                     label="Budget_Max">
+                        </p:inputText>
+                        
+                        <!-- BUDGET MIN -->
+                        <p:outputLabel value="Minimum Budget" for="budget_min" />
+                        <p:inputText id="budget_min" value="#{accountManager.selected.budgetMin}" required="false" styleClass="accountInputTextField"
+                                     label="Budget_Min">
+                        </p:inputText>
+
+                        <!-- NUMBER OF ROOMMATES WANTED -->
+                        <p:outputLabel value="Number of Roommates" for="number_roommates_wanted" />      
+                        <p:selectOneMenu id="number_roommates_wanted" value="#{accountManager.selected.numberRoommatesWanted}" required="false" requiredMessage="Please enter the number of roommates you want">
+                            <f:selectItem itemLabel="Select Number" itemValue="SelectNumber" noSelectionOption="true" />
+                            <f:selectItem itemLabel="1" itemValue="1" />
+                            <f:selectItem itemLabel="2" itemValue="2" />
+                            <f:selectItem itemLabel="3" itemValue="3" />
+                            <f:selectItem itemLabel="4" itemValue="4" />
+                        </p:selectOneMenu>           
+                        
+                        <!-- PREFERRED LOCATION -->
+                        <p:outputLabel value="Preferred Apartment Location" for="preferred_location" />
+                        <p:inputText id="preferred_location" value="#{accountManager.selected.preferredLocation}" required="false" styleClass="accountInputTextField"
+                                     requiredMessage="Please enter your location preference for apartments" label="Preferred Location">
+                        <f:validateLength minimum="2" /> 
+                        </p:inputText>
+                        
+                        <!-- SHOPPING PREFERENCE -->
+                        <p:outputLabel value="Shopping Availability" for="shopping" />      
+                        <p:selectOneMenu id="shopping" value="#{accountManager.selected.shopping}" required="false">
+                            <f:selectItem itemLabel="Select Preference" itemValue="SelectPreference" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Yes" itemValue="yes" />
+                            <f:selectItem itemLabel="No" itemValue="no" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="Account Information" />
+                        <h:outputLabel value=""/>
+                        
+                        <h:outputText value="Username" />
+                        <h:outputText value="#{accountManager.selected.userName}" />
+
+                        <h:outputLabel value="" />
+                        <h:outputLabel value="Fill in Only to Change Password" styleClass="alertUser"/>
+
+                        <!-- PASSWORD CHANGE -->
+                        <h:outputLabel value="New Password:" for="newPassword" />
+                        
+                        <!-- ADDRESS LINE 1 -->
+                        <p:password id="newPassword" value="#{accountManager.newPassword}" feedback="true" styleClass="accountInputTextField" >
+                            <!-- Execute the "validate" method in the "PasswordValidator.java" class file to validate the password entered. -->
+                            <f:validator validatorId="passwordValidator" /> 
+                        </p:password>
+                        
+                        <!-- p:password changes the characters typed to bullets to hide the password as it is typed -->
+
+                        <h:outputLabel value="Confirm New Password:" for="newConfirmPassword" />
+                        <p:password id="newConfirmPassword" value="toBeReadFromThisFieldByAccountManager" styleClass="accountInputTextField" />
+
+                    </p:panelGrid>
+                    
+                    <br />
+                    <p:commandButton id="submit" value="Save" action="#{accountManager.updateAccount()}" 
+                                     styleClass="commandButton" ajax="false" icon="ui-icon-disk" />
+                    &nbsp;
+                    <p:button outcome="Profile" value="Cancel" icon="ui-icon-cancel" styleClass="commandButton" />
+                    
+                    <br /><br />
+                </h:form>
+                
+            </div>
+            
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+</html>

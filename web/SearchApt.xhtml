@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Wenjia Song on 2017.04.12 
+Copyright © 2017 Wenjia Song. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog position="center center" id="AptSearchDialog" widgetVar="AptSearchDialog" 
+                  modal="true" resizable="false" appendTo="@(body)" header="Search Apartments" width="500px">
+
+            <h:form id="aptSearchDialogForm">
+                <div align="center" bgcolor="#FDF5E6" >
+                    <div align="center" bgcolor="#FDF5E6">
+                        <br />
+                        <table border="0" align="center" cellpadding="10" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <h:outputText value="Search By Apartment Name: " style="font-weight:bold"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="searchQueryField" value="Apartment Name:" class="formItemText" />
+                                </td>
+                                <td >
+                                    <p:inputText id="searchQueryField" style="width: 200px" required="false"
+                                                 value="#{apartmentManager.searchName}" label="searchQueryField" 
+                                                 requiredMessage="• Please enter a search string!" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputText value="Search By Preferences: " style="font-weight:bold"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="NumberOfRooms" value="Number of Rooms:" class="formItemText"/>        
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="NumberOfRooms" value="#{apartmentManager.searchRoom}" style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="0" />
+                                        <f:selectItem itemLabel="1" itemValue="1" />
+                                        <f:selectItem itemLabel="2" itemValue="2" />Ï
+                                        <f:selectItem itemLabel="3" itemValue="3" />Ï
+                                        <f:selectItem itemLabel="4" itemValue="4" />Ï
+                                        <f:selectItem itemLabel="5" itemValue="5" />Ï
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="RentMin" value="Monthly Rent Per Person Min:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="RentMin" style="width: 200px" required="false"
+                                                 value="#{apartmentManager.searchRentMin}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="RentMax" value="Monthly Rent Per Person Max:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="RentMax" style="width: 200px" required="false"
+                                                 value="#{apartmentManager.searchRentMax}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="Distance" value="Distance to Campus:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="Distance" style="width: 200px" required="false"
+                                                 value="#{apartmentManager.searchDistance}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="washerAndDryer" value="Washer and Dryer:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="washerAndDryer" value="#{apartmentManager.searchWD}"
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="In Unit" itemValue="inUnit" />
+                                        <f:selectItem itemLabel="In Building" itemValue="inBuilding" />
+                                        <f:selectItem itemLabel="On Site" itemValue="onSite" />
+                                        <f:selectItem itemLabel="Other" itemValue="other" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="pet" value="Pet Friendly:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="pet" value="#{apartmentManager.searchPet}" style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Yes" itemValue="yes" />
+                                        <f:selectItem itemLabel="No" itemValue="no" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="smoke" value="Smoke Free:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="smoke" value="#{apartmentManager.searchSmoke}"
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Yes" itemValue="yes" />
+                                        <f:selectItem itemLabel="No" itemValue="no" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="gym" value="Gym:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="gym" value="#{apartmentManager.searchGym}" 
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Yes" itemValue="yes" />
+                                        <f:selectItem itemLabel="No" itemValue="no" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="pool" value="Pool: " class="formItemText" />         
+                                </td>
+                                <td >
+                                    <p:selectOneMenu id="pool" value="#{apartmentManager.searchPool}" 
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Yes" itemValue="yes" />
+                                        <f:selectItem itemLabel="No" itemValue="no" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="shop" value="Shopping Availability: " class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="shop" value="#{apartmentManager.searchShop}" 
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Yes" itemValue="yes" />
+                                        <f:selectItem itemLabel="No" itemValue="no" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+
+                    <p:messages id="msgs" showIcon="false" style="color: red; background-color: transparent"/>
+
+                    <div align="center" bgcolor="#FDF5E6">
+                        <p:commandButton value="Search" id="searchButton" ajax="false"
+                                         styleClass="commandButton" icon="ui-icon-search"
+                                         action="#{apartmentManager.performSearch()}" />
+                        &nbsp;&nbsp;
+
+                        <p:commandButton id="clear" value="Clear"
+                                         styleClass="commandButton" immediate="true" icon="ui-icon-refresh"
+                                         update="aptSearchDialogForm"
+                                         action="#{apartmentManager.clearSearchFields()}" >
+                            <f:ajax render=":aptSearchDialogForm" />
+                        </p:commandButton>
+                        &nbsp;&nbsp;
+
+                        <p:commandButton value="Cancel" onclick="PF('AptSearchDialog').hide()"
+                                         action="#{apartmentManager.clearSearchFields()}"
+                                         styleClass="commandButton" icon="ui-icon-cancel" immediate="true">
+                            <f:ajax render=":aptSearchDialogForm" />
+                        </p:commandButton>
+                        <br /><br />
+
+                    </div>
+
+
+
+                </div>
+            </h:form>  
+
+        </p:dialog>
+
+    </ui:composition>
+</html>
+
+

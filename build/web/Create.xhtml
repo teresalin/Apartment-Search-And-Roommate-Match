@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RoommatesCreateDlg" widgetVar="RoommatesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRoommatesTitle}">
+            <h:form id="RoommatesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{roommatesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_userId}" for="userId" />
+                        <p:inputText id="userId" value="#{roommatesController.selected.userId}" title="#{bundle.CreateRoommatesTitle_userId}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_userId}"/>
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{roommatesController.selected.firstName}" title="#{bundle.CreateRoommatesTitle_firstName}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{roommatesController.selected.lastName}" title="#{bundle.CreateRoommatesTitle_lastName}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_userName}" for="userName" />
+                        <p:inputText id="userName" value="#{roommatesController.selected.userName}" title="#{bundle.CreateRoommatesTitle_userName}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{roommatesController.selected.password}" title="#{bundle.CreateRoommatesTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_age}" for="age" />
+                        <p:inputText id="age" value="#{roommatesController.selected.age}" title="#{bundle.CreateRoommatesTitle_age}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_age}"/>
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_gender}" for="gender" />
+                        <p:inputText id="gender" value="#{roommatesController.selected.gender}" title="#{bundle.CreateRoommatesTitle_gender}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{roommatesController.selected.email}" title="#{bundle.CreateRoommatesTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{roommatesController.selected.phone}" title="#{bundle.CreateRoommatesTitle_phone}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_studentStatus}" for="studentStatus" />
+                        <p:inputText id="studentStatus" value="#{roommatesController.selected.studentStatus}" title="#{bundle.CreateRoommatesTitle_studentStatus}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_major}" for="major" />
+                        <p:inputText id="major" value="#{roommatesController.selected.major}" title="#{bundle.CreateRoommatesTitle_major}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_ageMin}" for="ageMin" />
+                        <p:inputText id="ageMin" value="#{roommatesController.selected.ageMin}" title="#{bundle.CreateRoommatesTitle_ageMin}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_ageMin}"/>
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_ageMax}" for="ageMax" />
+                        <p:inputText id="ageMax" value="#{roommatesController.selected.ageMax}" title="#{bundle.CreateRoommatesTitle_ageMax}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_ageMax}"/>
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_preferredLocation}" for="preferredLocation" />
+                        <p:inputText id="preferredLocation" value="#{roommatesController.selected.preferredLocation}" title="#{bundle.CreateRoommatesTitle_preferredLocation}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_petPreference}" for="petPreference" />
+                        <p:selectBooleanCheckbox id="petPreference" value="#{roommatesController.selected.petPreference}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_budgetMin}" for="budgetMin" />
+                        <p:inputText id="budgetMin" value="#{roommatesController.selected.budgetMin}" title="#{bundle.CreateRoommatesTitle_budgetMin}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_budgetMin}"/>
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_budgetMax}" for="budgetMax" />
+                        <p:inputText id="budgetMax" value="#{roommatesController.selected.budgetMax}" title="#{bundle.CreateRoommatesTitle_budgetMax}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_budgetMax}"/>
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_collegeStatus}" for="collegeStatus" />
+                        <p:inputText id="collegeStatus" value="#{roommatesController.selected.collegeStatus}" title="#{bundle.CreateRoommatesTitle_collegeStatus}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_shopping}" for="shopping" />
+                        <p:inputText id="shopping" value="#{roommatesController.selected.shopping}" title="#{bundle.CreateRoommatesTitle_shopping}" />
+                        <p:outputLabel value="#{bundle.CreateRoommatesLabel_numberRoommatesWanted}" for="numberRoommatesWanted" />
+                        <p:inputText id="numberRoommatesWanted" value="#{roommatesController.selected.numberRoommatesWanted}" title="#{bundle.CreateRoommatesTitle_numberRoommatesWanted}" required="true" requiredMessage="#{bundle.CreateRoommatesRequiredMessage_numberRoommatesWanted}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{roommatesController.create}" value="#{bundle.Save}" update="display,:RoommatesListForm:datalist,:growl" oncomplete="handleSubmit(args,'RoommatesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RoommatesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Wenjia Song on 2017.04.29 
+Copyright © 2017 Wenjia Song. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog position="center center" id="RmtSearchDialog" widgetVar="RmtSearchDialog" 
+                  modal="true" resizable="false" appendTo="@(body)" header="Search Roommates" width="500px">
+
+            <h:form id="rmtSearchDialogForm">
+                <div align="center" bgcolor="#FDF5E6" >
+                    <div align="center" bgcolor="#FDF5E6">
+                        <br />
+                        <table border="0" align="center" cellpadding="10" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <h:outputText value="Search By Roommate's Name: " style="font-weight:bold"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="searchQueryField" value="Roommate Name:" class="formItemText" />
+                                </td>
+                                <td >
+                                    <p:inputText id="searchQueryField" style="width: 200px" required="false"
+                                                 value="#{roommatesController.searchName}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputText value="Search By Preferences: " style="font-weight:bold"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="AgeMax" value="Max Age of Roommates:" class="formItemText"/>        
+                                </td>
+
+                                <td>
+                                    <p:inputText id="AgeMax" style="width: 200px" required="false"
+                                                 value="#{roommatesController.searchAgeMax}"/>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="AgeMin" value="Min Age of Roommates:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="AgeMin" style="width: 200px" required="false"
+                                                 value="#{roommatesController.searchAgeMin}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="Gender" value="Gender of Roomates:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="Gender" value="#{roommatesController.searchGender}"
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Female" itemValue="Female" />
+                                        <f:selectItem itemLabel="Male" itemValue="Male" />
+
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="College" value="College Status:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="College" value="#{roommatesController.searchCollegeStatus}"
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="College" itemValue="College" />
+                                        <f:selectItem itemLabel="Non-College" itemValue="Non-College" />
+
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="pet" value="Pet Friendly:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:selectOneMenu id="pet" value="#{roommatesController.searchPet}" 
+                                                     style="width: 180px">
+                                        <f:selectItem itemLabel="No Preference" itemValue="all" />
+                                        <f:selectItem itemLabel="Yes" itemValue="yes" />
+                                        <f:selectItem itemLabel="No" itemValue="no" />
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="BudgetMax" value="Budget Max:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="BudgetMax" style="width: 200px" required="false"
+                                                 value="#{roommatesController.searchBudgetMax}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="BudgetMin" value="Budget Min:" class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="BugetMin" style="width: 200px" required="false"
+                                                 value="#{roommatesController.searchBudgetMin}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel for="NumRoom" value="Number of Roommates Wanted: " class="formItemText" />         
+                                </td>
+                                <td>
+                                    <p:inputText id="NumRoom" style="width: 200px" required="false"
+                                                 value="#{roommatesController.searchNumRmt}"/>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                    <br />
+
+                    <p:messages id="msgs" showIcon="false" style="color: red; background-color: transparent"/>
+
+                    <div align="center" bgcolor="#FDF5E6">
+                        <p:commandButton value="Search" id="searchButton" ajax="false"
+                                         styleClass="commandButton" icon="ui-icon-search"
+                                         action="#{roommatesController.performSearch()}" />
+                        &nbsp;&nbsp;
+
+                        <p:commandButton id="clear" value="Clear"
+                                         styleClass="commandButton" immediate="true" icon="ui-icon-refresh"
+                                         update="rmtSearchDialogForm"
+                                         action="#{roommatesController.clearSearchFields()}" >
+                            <f:ajax render=":rmtSearchDialogForm" />
+                        </p:commandButton>
+                        &nbsp;&nbsp;
+
+                        <p:commandButton value="Cancel" onclick="PF('RmtSearchDialog').hide()"
+                                         action="#{roommatesController.clearSearchFields()}"
+                                         styleClass="commandButton" icon="ui-icon-cancel" immediate="true">
+                            <f:ajax render=":rmtSearchDialogForm" />
+                        </p:commandButton>
+                        <br /><br />
+
+                    </div>
+
+
+
+                </div>
+            </h:form>  
+
+        </p:dialog>
+
+    </ui:composition>
+</html>
+

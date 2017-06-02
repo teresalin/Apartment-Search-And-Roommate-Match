@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Created by Seth Chen on 2016.11.22 
+Copyright © 2016 Seth Chen. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        
+        
+        <p:dialog id="ApartmentViewDlg" widgetVar="ApartmentViewDialog" modal="true" resizable="false" appendTo="@(body)" width="640px" height="390px" header="#{bundle.ViewApartmentsTitle}">
+
+            <h:form id="ApartmentViewForm" class="ui-datatable-data" style="text-align:center" >
+                <!-- Create the content for this page below -->
+           
+                
+                <h:outputText value="Complex Name" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.complexName}" title="Complex Name"/>
+                <br></br> <br></br>
+                
+                <h:outputText value="Latitude" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.latitude}" title="Latitude">
+                              <f:convertNumber pattern="#0.0000000" />
+                </h:outputText>
+                <br></br> <br></br>
+                
+                <h:outputText value="Longitude" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.longitude}" title="Longitude">
+                              <f:convertNumber pattern="#0.0000000" />
+                </h:outputText>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Office Address" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.officeAddress}" title="Office Address"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Min Rooms" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.roomsMin}" title="Min Rooms"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Max Rooms" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.roomsMax}" title="Max Rooms"/>
+                <br></br> <br></br>
+                
+                <h:outputText value="Min Rent Per Person}" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.rentPerPersonMin}" title="Min Rent Per Person"/>
+                <br></br> <br></br>
+                
+                <h:outputText value="Max Rent Per Person" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.rentPerPersonMax}" title="Max Rent Per Person"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Pet Friendly" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.petFriendly}" title="Pet Friendly"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Included Utilities" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.includedUtilities}" title="Included Utilities"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Smoke Free" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.smokeFree}" title="Smoke Free"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Campus Distance" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.campusDistance}" title="Campus Distance"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Bus Stops" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.busStops}" title="Bus Stops"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Gym" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.gym}" title="Pool"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Pool" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.pool}" title="Pool"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Contact Info" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.contactInfo}" title="Contact info"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Washer Dryer" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.washerDryer}" title="Washer Dryer"/>
+                <br></br> <br></br>
+                
+                 <h:outputText value="Shopping Availability" style="font-style: italic;font-weight: bold;" />
+                <br></br>              
+                <h:outputText value="#{apartmentManager.selected.shoppingAvailability}" title="Shopping Availability"/>
+                <br></br> <br></br>
+
+                <h:panelGroup>
+                    <p:spacer height="10"/> 
+                    <div align="center">
+                        <!-- CLOSE button -->   
+                        <p:commandButton value="#{bundle.Close}" onclick="ApartmentViewDialog.hide()" styleClass="commandButton" icon="ui-icon-close"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+            
+        </p:dialog>
+    </ui:composition>
+</html>

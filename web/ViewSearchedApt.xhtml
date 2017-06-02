@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AptSearchViewDlg" widgetVar="AptSearchViewDialog" modal="true" 
+                  resizable="false" appendTo="@(body)" header="Apartment Information">
+
+            <h:form id="AptSearchViewForm" class="ui-datatable-data">
+                
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="viewColumn1, viewColumn2" 
+                                 rendered="#{apartmentManager.searchSelected != null}">
+                        
+                        
+                        <h:outputText value="Complex Name:"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.complexName}"/>
+                        
+                        <h:outputText value="Pet"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.petFriendly}"/>
+
+                        <h:outputText value="Utilities"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.includedUtilities}" />
+
+                        <h:outputText value="Smoke"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.smokeFree}" />
+
+                        <h:outputText value="Distance"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.campusDistance}" />
+
+                        <h:outputText value="Bus"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.busStops}"/>
+
+                        <h:outputText value="Gym"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.gym}"/>
+
+                        <h:outputText value="Pool"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.pool}"/>
+                        
+                        <h:outputText value="Contact"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.contactInfo}"/>
+                        
+                        <h:outputText value="Washer Dryer"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.washerDryer}"/>
+                        
+                        <h:outputText value="Shop"/>
+                        <h:outputText value="#{apartmentManager.searchSelected.shoppingAvailability}"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+                
+                <h:panelGroup>
+                    <p:spacer height="10"/> 
+                    <div align="center">
+                        <!-- CLOSE button -->
+                        <p:commandButton value="Close" onclick="PF('AptSearchViewDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-close"/>
+                    </div>
+                </h:panelGroup>
+                
+            </h:form>
+
+        </p:dialog>
+    </ui:composition>
+</html>

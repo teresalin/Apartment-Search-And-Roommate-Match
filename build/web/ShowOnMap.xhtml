@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Seth Chen on 2017.04.30 
+Copyright © 2017 Seth Chen. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Map"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+                <div align="center">
+                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyALRaITh9Bl4-2jcmku_KxDl7K9ASXIqLM&amp;libraries=places&amp;sensor=false">
+    
+                    </script> 
+               <!--Primefaces gmap - center is the selected apartment's latitude and longitude-->
+                     <p:gmap center="#{apartmentManager.selected.latitude}, #{apartmentManager.selected.longitude}" 
+                             zoom="15" type="HYBRID" style="width:95%;height:400px"
+                             model="#{markersView.getSimpleModel(apartmentManager.selected)}">
+                      <!--Click even of marker-->               
+                         <p:ajax event="overlaySelect" listener="#{markersView.onMarkerSelect}" />
+                         <p:gmapInfoWindow id="infoWindow">
+                             <p:outputPanel style="text-align: center; display: block; margin: auto;height: 100px;width: 400px;">
+                                 <!-- This is information the info window shows when the user
+                                clicks the marker
+                                
+                                data[0] -> complex name
+                                data[1] -> latitude
+                                data[2] -> longitude
+                                data[3] -> office address
+                                -->
+                                 <h:outputText value="#{markersView.marker.data[0]}"/>
+                                 <br/><br/>
+                                 <h:outputText value="#{markersView.marker.data[1]}"/>
+                                 <br/>
+                                 <h:outputText value="#{markersView.marker.data[2]}"/>
+                                 <br/>
+                                 <h:outputText value="#{markersView.marker.data[3]}"/>
+                             </p:outputPanel>
+                         </p:gmapInfoWindow>
+                     </p:gmap>
+                    
+                </div>
+                
+            </ui:define>
+
+    </ui:composition>
+    
+    
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>
+

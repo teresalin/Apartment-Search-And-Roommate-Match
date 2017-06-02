@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SearchedRmtViewDlg" widgetVar="SearchedRmtViewDialog" modal="true" resizable="false" appendTo="@(body)" 
+                  header="#{bundle.ViewRoommatesTitle}">
+            <h:form id="SearchedRmtViewForm" class="ui-datatable-data">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{roommatesController.searchedSelected != null}"
+                                 columnClasses="viewColumn1, viewColumn2" >
+                        
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_firstName}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.firstName}" title="#{bundle.ViewRoommatesTitle_firstName}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_lastName}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.lastName}" title="#{bundle.ViewRoommatesTitle_lastName}"/>
+                        
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_age}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.age}" title="#{bundle.ViewRoommatesTitle_age}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_gender}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.gender}" title="#{bundle.ViewRoommatesTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_email}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.email}" title="#{bundle.ViewRoommatesTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_phone}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.phone}" title="#{bundle.ViewRoommatesTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_studentStatus}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.studentStatus}" title="#{bundle.ViewRoommatesTitle_studentStatus}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_major}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.major}" title="#{bundle.ViewRoommatesTitle_major}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_ageMin}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.ageMin}" title="#{bundle.ViewRoommatesTitle_ageMin}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_ageMax}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.ageMax}" title="#{bundle.ViewRoommatesTitle_ageMax}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_preferredLocation}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.preferredLocation}" title="#{bundle.ViewRoommatesTitle_preferredLocation}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_petPreference}"/>
+                        <p:selectBooleanCheckbox value="#{roommatesController.searchedSelected.petPreference}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_budgetMin}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.budgetMin}" title="#{bundle.ViewRoommatesTitle_budgetMin}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_budgetMax}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.budgetMax}" title="#{bundle.ViewRoommatesTitle_budgetMax}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_collegeStatus}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.collegeStatus}" title="#{bundle.ViewRoommatesTitle_collegeStatus}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_shopping}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.shopping}" title="#{bundle.ViewRoommatesTitle_shopping}"/>
+                        <h:outputText value="#{bundle.ViewRoommatesLabel_numberRoommatesWanted}"/>
+                        <h:outputText value="#{roommatesController.searchedSelected.numberRoommatesWanted}" title="#{bundle.ViewRoommatesTitle_numberRoommatesWanted}"/>
+                    </p:panelGrid>
+                    <br />
+                    <div align="center" >
+                    <p:commandButton value="#{bundle.Close}" onclick="SearchedRmtViewDialog.hide()"
+                                     styleClass="commandButton" icon="ui-icon-close"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
